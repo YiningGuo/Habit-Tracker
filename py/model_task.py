@@ -65,9 +65,14 @@ class Task(ndb.Model):
 
     Args:
       id: the id of task.
+
+    Raises:
+      TaskUpdateError: when the task id is not valid.
     """
     task = Task.get_by_id(int(id))
-    task.delete()
+    if not task:
+      raise TaskUpdateError('Invalid task id.')
+    task.key.delete()
 
   @classmethod
   def _validate_title(cls, title):
