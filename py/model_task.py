@@ -9,7 +9,7 @@ class TaskUpdateError(Exception):
 
 
 class Task(ndb.Model):
-  """ndb Task model
+  """ndb Generalized Task model
 
   Properties:
     title: a one line description of a task.
@@ -74,8 +74,8 @@ class Task(ndb.Model):
       raise TaskUpdateError('Invalid task id.')
     task.key.delete()
 
-  @classmethod
-  def _validate_title(cls, title):
+  @staticmethod
+  def _validate_title(title):
     """Validate the title
 
     Args:
