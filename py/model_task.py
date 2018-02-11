@@ -24,7 +24,7 @@ class Task(ndb.Model):
   def query_by_current_user(cls):
     """Query tasks under current user."""
     current_user_id = users.get_current_user().user_id()
-    return cls.query(Task.owner_id == current_user_id)
+    return cls.query(cls.owner_id == current_user_id)
 
   @classmethod
   def create(cls, title):
@@ -35,7 +35,7 @@ class Task(ndb.Model):
     """
     title = cls._validate_title(title)
     owner_id = users.get_current_user().user_id()
-    task = Task(title=title,
+    task = cls(title=title,
                 owner_id=owner_id)
     task.put()
     return task

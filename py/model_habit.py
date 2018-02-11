@@ -15,6 +15,12 @@ class Habit(Task):
 
   @classmethod
   def create(cls, title):
+    """Create a new Habit.
+       Set initial signup and strength to be zero.
+
+    Args:
+      title: the title of task.
+    """
     habit = super(Habit, cls).create(title)
     habit.signup_days = 0
     habit.strength = 0

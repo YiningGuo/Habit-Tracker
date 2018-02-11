@@ -11,3 +11,6 @@ class TaskTestCase(TestTool):
     self.assertEqual('test', self.habit.title)
     self.assertEqual(0, self.habit.signup_days)
     self.assertEqual(0, self.habit.strength)
+
+  def test_query(self):
+    self.assertEqual(self.habit._get_kind(), 'Habit')
