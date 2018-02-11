@@ -8,9 +8,23 @@ class TaskTestCase(TestTool):
     self.habit_id = self.habit.key.id()
 
   def test_create(self):
-    self.assertEqual('test', self.habit.title)
-    self.assertEqual(0, self.habit.signup_days)
-    self.assertEqual(0, self.habit.strength)
+    self._assert_initial(self.habit, 'test')
 
   def test_query(self):
-    self.assertEqual(self.habit._get_kind(), 'Habit')
+    habit = Habit.query().fetch().pop()
+    self.assertEqual(habit._get_kind(), 'Habit')
+    self._assert_initial(habit, 'test')
+
+  def test_update(self):
+    habit = Habit.update(self.habit_id, 'change')
+    self._assert_initial(habit, 'change')
+
+  def test_delete(self):
+    Habit.delete(self.habit_id)
+    habits = Habit.query().fetch()
+    self.assertEqual(0, len(habits))
+
+  def _assert_initial(self, habit, title):
+    self.assertEqual(title, self.habit.title)
+    self.assertEqual(0, self.habit.signup_days)
+    self.assertEqual(0, self.habit.strength)

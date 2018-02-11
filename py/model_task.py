@@ -32,6 +32,9 @@ class Task(ndb.Model):
 
     Args:
       title: the title of task.
+
+    Returns:
+      Task entity
     """
     title = cls._validate_title(title)
     owner_id = users.get_current_user().user_id()
@@ -48,13 +51,11 @@ class Task(ndb.Model):
       id: the id of task.
       title: the new title.
 
-    Raises:
-      TaskUpdateError: when the task id is not valid.
+    Returns:
+      Task entity
     """
     title = cls._validate_title(title)
-    task = Task.get_by_id(int(id))
-    if not task:
-      raise TaskUpdateError('Invalid task id.')
+    task = cls.get_task_by_id(int(id))
     task.title = title
     task.put()
     return task
@@ -65,14 +66,27 @@ class Task(ndb.Model):
 
     Args:
       id: the id of task.
+    """
+    task = cls.get_task_by_id(int(id))
+    task.key.delete()
+
+  @classmethod
+  def get_task_by_id(cls, id):
+    """ Get a task from requested id.
+
+    Args:
+      id: the id of task.
+
+    Returns:
+      Task entity
 
     Raises:
       TaskUpdateError: when the task id is not valid.
     """
-    task = Task.get_by_id(int(id))
+    task = cls.get_by_id(int(id))
     if not task:
       raise TaskUpdateError('Invalid task id.')
-    task.key.delete()
+    return task
 
   @staticmethod
   def _validate_title(title):
