@@ -39,7 +39,7 @@ class Task(ndb.Model):
     title = cls._validate_title(title)
     owner_id = users.get_current_user().user_id()
     task = cls(title=title,
-                owner_id=owner_id)
+               owner_id=owner_id)
     task.put()
     return task
 
