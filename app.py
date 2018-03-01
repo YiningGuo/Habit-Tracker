@@ -10,14 +10,16 @@ class RestHandler(webapp2.RequestHandler):
 	self.response.headers['content-type'] = 'text/plain'
 	self.response.write(json.dumps(response))
 
-class HabitGetUpdateAndDelete(RestHandler):
-  def post(self, id):
+class HabitSaveAndQuery(RestHandler):
+  def post(self):
     response = json.loads(self.request.body)
     habit = Habit.create(response['title'])
 
-  def get(self, id):
-    response =     
+  def get(self):
+    habits = Habit.query_by_current_user()
+    response = [habit.display_task() for habit in habits]
+    self.SendJson(response)
 
 APP = webapp2.WSGIApplication([
-    ('/service/habit/(\d+)', HabitGetUpdateAndDelete)
+    ('/service/habit', HabitSaveAndQuery)
 ], debug=True)

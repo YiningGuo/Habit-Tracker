@@ -1,6 +1,6 @@
 'use strict';
 
-var Comment = function($resource){
+var Habit = function($resource){
 	return $resource('/service/habit/:id', null, {});
 };
 
