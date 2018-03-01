@@ -1,15 +1,15 @@
 (function() {
-	'use strict';
+  'use strict';
 
   var HabitCtrl = function($scope, Comment) {
     $scope.habits = [];
 
-		$scope.query = function() {
-			var resource = Habit.query();
-			resource.$promise.then(function(messages){
-				$scope.habits = messages;
-			});
-		};
+    $scope.query = function() {
+      var resource = Habit.query();
+      resource.$promise.then(function(messages){
+        $scope.habits = messages;
+      });
+    };
   };
 
   angular
