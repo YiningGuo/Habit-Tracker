@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var HabitCtrl = function($scope, Comment) {
+  var HabitCtrl = function($scope) {
     $scope.habits = [];
 
     $scope.query = function() {

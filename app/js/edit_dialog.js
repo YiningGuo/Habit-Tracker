@@ -3,7 +3,7 @@
 (function() {
   'use strict';
 
-  var edit_dialog = function(Habit) {
+  var editDialog = function(Habit) {
     return {
       restrict:'E',
       templateUrl:function(tElement) {
@@ -23,6 +23,6 @@
   };
 
 angular
-.module('EditDialog', [])
-.directive('edit_dialog', edit_dialog);
+.module('App.EditDialog', [])
+.directive('editDialog', editDialog);
 })();

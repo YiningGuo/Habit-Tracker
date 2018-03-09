@@ -3,12 +3,14 @@
 var App = angular.module('App',
 ['ngRoute',
  'ngResource',
- 'Resource'])
+ 'Resource',
+ 'App.Habit',
+ 'App.EditDialog'])
 .config(function($routeProvider){
 
   $routeProvider.when('/',{
     templateUrl: 'partials/habit.html',
     controller: 'HabitCtrl',
   });
-  
+
 });
