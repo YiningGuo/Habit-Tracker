@@ -1,19 +1,23 @@
 <div class="glyphicon glyphicon-plus"
-      ng-click="showDialog()">
+     ng-click="showDialog()"
+     id="createButton">
 </div>
 <div class="modal fade" id="dialog">
   <div class="model-dialog">
     <div class="model-content">
-      <div class="model-body">
-        <form nonvalidate>
-          <label> Title </label>
-          <input type="text" ng-model="habit.title" class="form-control"
-                 placeholder="Enter title of habit"/>
-        </form>
+      <div class="modal-header">
+        <h3 class="modal-title"> Title </h3>
+      </div>
+      <div class="model-body" style="width: 95%;">
+        <input type="text" ng-model="habit.title"
+               class="form-control"
+               placeholder="Enter title of habit"
+               style="margin: 10px;"/>
       </div>
       <div  class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button class="btn btn-default" data-dismiss="modal"
+                data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" data-dismiss="modal"
                 ng-click=update(habit)>Save</button>
       </div>
     </div>

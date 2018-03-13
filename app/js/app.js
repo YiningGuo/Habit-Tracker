@@ -13,4 +13,7 @@ var App = angular.module('App',
     controller: 'HabitCtrl',
   });
 
+  $routeProvider.otherwise({
+    redirectTo : '/'
+  });
 });

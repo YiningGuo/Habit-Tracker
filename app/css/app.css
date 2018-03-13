@@ -1,8 +1,13 @@
-.status {
-  color: blue;
-  padding: 1em;
-  height: 1em;
+#createButton {
+  font-size: 20px;
+  float: right;
+  margin: 10px;
 }
-.comment{
-	width:300px;
+
+#dialog {
+  background-color: white;
+  height: 32%;
+  width: 50%;
+  top: 25%;
+  left: 20%;
 }
